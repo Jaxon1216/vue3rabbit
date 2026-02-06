@@ -26,6 +26,8 @@ onMounted(() => {
 </script>
 
 <template>
+  <div class="test">scss test</div>
+  <hr>
   <!-- 一级路由出口组件 -->
   <RouterView />
   <hr>
@@ -40,4 +42,8 @@ onMounted(() => {
   <button @click="increment">{{ count }}</button>
 </template>
 
-<style scoped></style>
+<style scoped lang="scss">
+.test {
+  color: $priceColor;
+}
+</style>
