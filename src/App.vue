@@ -26,7 +26,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <br>
+  <!-- 一级路由出口组件 -->
+  <RouterView />
+  <hr>
   <el-button type="primary">Primary</el-button>
   <hr>
   <ul>
