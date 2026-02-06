@@ -26,12 +26,15 @@ onMounted(() => {
 </script>
 
 <template>
+  <br>
+  <el-button type="primary">Primary</el-button>
+  <hr>
   <ul>
     <li v-for="item in list" :key="item.id">{{ item.name }}</li>
     <!-- key作用：帮助Vue识别每个列表项，提高渲染性能和正确性 -->
     <!-- 为什么用item.id：因为id是唯一的，能准确标识每一项 -->
   </ul>
-  <br>
+  <hr>
   <button @click="increment">{{ count }}</button>
 </template>
 
