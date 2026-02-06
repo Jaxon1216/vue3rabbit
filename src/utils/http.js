@@ -11,6 +11,6 @@ httpInstance.interceptors.request.use(config => {
   return config
 }, error => Promise.reject(error))
 //axios响应式拦截器
-httpInstance.interceptors.response.use(response => response, error => Promise.reject(error))
+httpInstance.interceptors.response.use(response => response.data, error => Promise.reject(error))
 
 export default httpInstance
