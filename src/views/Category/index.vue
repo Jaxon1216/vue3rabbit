@@ -5,15 +5,28 @@ import { onMounted, ref } from 'vue'
 
 import { getBannerAPI } from '@/apis/home'
 import GoodsItem from '../Home/components/GoodsItem.vue'
+
+import { onBeforeRouteUpdate } from 'vue-router'
+
 //获取数据
 const categoryData = ref({})
 const route = useRoute()
-const getCategory = async () => {
-    const res = await getCategoryAPI(route.params.id)
+const getCategory = async (id = route.params.id) => {
+  //不传就是默认参数
+    const res = await getCategoryAPI(id)
     console.log(res)
     categoryData.value = res.result
 }
 onMounted(() => getCategory())
+
+//路由参数发生变化的时候 可以把分类数据接口重新发送
+onBeforeRouteUpdate((to)=> {
+  console.log('路由参数发生变化')
+  //存在问题，需要最新的路由参数拿到最新的分类数据
+  console.log(to)
+  getCategory(to.params.id)
+  
+})
 
 //获取banner
 const bannerList = ref([])
