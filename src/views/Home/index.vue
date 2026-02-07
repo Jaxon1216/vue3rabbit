@@ -3,7 +3,7 @@ import HomeCategory from './components/HomeCategory.vue'
 import HomeBanner from './components/HomeBanner.vue'
 import HomeNew from './components/HomeNew.vue'
 import HomeHot from './components/HomeHot.vue'
-import homeProduct from './components/HomeProduct.vue'
+import HomeProduct from './components/HomeProduct.vue'
 import HomePanel from './components/HomePanel.vue'
 
 </script>
@@ -15,7 +15,7 @@ import HomePanel from './components/HomePanel.vue'
   </div>
   <HomeNew />
   <HomeHot />
-  <homeProduct />
+  <HomeProduct />
 
   <!-- 测试面板组件 -->
 <HomePanel title="新鲜好物" sub-title="新鲜出炉 品质靠谱">
