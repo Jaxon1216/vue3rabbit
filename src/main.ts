@@ -7,17 +7,21 @@ import router from './router'
 // 引入初始化样式文件
 import '@/styles/common.scss'
 
+import { useIntersectionObserver } from '@vueuse/core'
 //测试接口函数
 // import {getCategory} from '@/apis/testAPI'
 // getCategory().then(res => {
 //   console.log(res)
 // })
 
+import { lazyPlugin } from '@/directives'
 //得到实例
 const app = createApp(App)
 //注册pinia
-const pinia = createPinia()
-//注册pinia
+app.use(createPinia())
+
 app.use(router)
+//注册懒加载指令插件
+app.use(lazyPlugin)
 //挂载实例
-app.use(pinia).mount('#app')
+app.mount('#app')
