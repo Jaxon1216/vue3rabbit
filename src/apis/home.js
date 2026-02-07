@@ -2,13 +2,25 @@ import httpInstance from '@/utils/http'
 
 //获取banner
 
-export function getBannerAPi (){
+// export function getBannerAPi (){
 
+//     return httpInstance({
+//         url: '/home/banner',
+
+//     })
+// }
+
+export function getBannerAPI (params = {}) {
+
+    const { distributionSite = '1' } = params
+    
     return httpInstance({
-        url: '/home/banner',
-
+      url: '/home/banner',
+      params: {
+        distributionSite  // ES6 简写，等价于 distributionSite: distributionSite
+      }
     })
-}
+  }
 
 /**
  * @description: 获取新鲜好物
