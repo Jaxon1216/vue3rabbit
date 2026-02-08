@@ -20,6 +20,7 @@ declare module 'vue' {
     ElPopconfirm: typeof import('element-plus/es')['ElPopconfirm']
     ElTabPane: typeof import('element-plus/es')['ElTabPane']
     ElTabs: typeof import('element-plus/es')['ElTabs']
+    ImageView: typeof import('./src/components/imageView/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }
@@ -38,6 +39,7 @@ declare global {
   const ElPopconfirm: typeof import('element-plus/es')['ElPopconfirm']
   const ElTabPane: typeof import('element-plus/es')['ElTabPane']
   const ElTabs: typeof import('element-plus/es')['ElTabs']
+  const ImageView: typeof import('./src/components/imageView/index.vue')['default']
   const RouterLink: typeof import('vue-router')['RouterLink']
   const RouterView: typeof import('vue-router')['RouterView']
 }
