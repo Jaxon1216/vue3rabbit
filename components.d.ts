@@ -23,6 +23,7 @@ declare module 'vue' {
     ImageView: typeof import('./src/components/imageView/index.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    XtxSku: typeof import('./src/components/XtxSku/index.vue')['default']
   }
   export interface GlobalDirectives {
     vInfiniteScroll: typeof import('element-plus/es')['ElInfiniteScroll']
@@ -42,4 +43,5 @@ declare global {
   const ImageView: typeof import('./src/components/imageView/index.vue')['default']
   const RouterLink: typeof import('vue-router')['RouterLink']
   const RouterView: typeof import('vue-router')['RouterView']
+  const XtxSku: typeof import('./src/components/XtxSku/index.vue')['default']
 }

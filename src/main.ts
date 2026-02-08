@@ -15,6 +15,9 @@ import { useIntersectionObserver } from '@vueuse/core'
 // })
 
 import { lazyPlugin } from '@/directives'
+
+//引用全局组件插件
+import { componentPlugin } from '@/components'
 //得到实例
 const app = createApp(App)
 //注册pinia
@@ -23,5 +26,7 @@ app.use(createPinia())
 app.use(router)
 //注册懒加载指令插件
 app.use(lazyPlugin)
+//注册全局组件插件
+app.use(componentPlugin)
 //挂载实例
 app.mount('#app')
