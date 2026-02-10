@@ -1,6 +1,8 @@
 import axios from 'axios'
 import { ElMessage } from 'element-plus'
 import 'element-plus/es/components/message/style/css'
+import { useUserStore } from '@/stores/user'
+
 // 创建axios实例
 const httpInstance = axios.create({
   baseURL: 'http://pcapi-xiaotuxian-front-devtest.itheima.net',
@@ -24,7 +26,7 @@ httpInstance.interceptors.response.use(response => response.data, error => {
   //统一错误提示
   ElMessage({
     type: 'warning',
-    message: error.response.data.message
+    message: error.response?.data?.message || '请求失败'
   })
   return Promise.reject(error)
 })
