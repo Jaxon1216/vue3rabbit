@@ -2,7 +2,7 @@ import axios from 'axios'
 import { ElMessage } from 'element-plus'
 import 'element-plus/es/components/message/style/css'
 import { useUserStore } from '@/stores/user'
-
+import router from '@/router'
 // 创建axios实例
 const httpInstance = axios.create({
   baseURL: 'http://pcapi-xiaotuxian-front-devtest.itheima.net',
@@ -28,6 +28,15 @@ httpInstance.interceptors.response.use(response => response.data, error => {
     type: 'warning',
     message: error.response?.data?.message || '请求失败'
   })
+
+  //401token失效处理
+  if (error.response?.status === 401) {
+    // 1. 清除用户信息
+    const userStore = useUserStore()
+    userStore.clearUserInfo()
+    // 2. 跳转到登录页
+    router.push('/login')
+  }
   return Promise.reject(error)
 })
 
