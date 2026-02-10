@@ -31,6 +31,15 @@ const rules = {
   ]
 }
 
+//3. 获取form实例作统一校验
+const formRef = ref(null)
+const doLogin = () => {
+  formRef.value.validate(async (valid) => {
+    console.log(valid)
+  })
+  //以valid作为判断条件，如果通过校验才执行登陆逻辑
+}
+
 </script>
 
 
@@ -69,7 +78,7 @@ const rules = {
                   我已同意隐私条款和服务条款
                 </el-checkbox>
               </el-form-item>
-              <el-button size="large" class="subBtn">点击登录</el-button>
+              <el-button size="large" class="subBtn" @click="doLogin">点击登录</el-button>
             </el-form>
           </div>
         </div>
