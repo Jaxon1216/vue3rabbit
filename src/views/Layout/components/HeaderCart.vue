@@ -1,6 +1,7 @@
 <script setup>
 import { useCartStore } from '@/stores/cartStore'
 import { computed } from 'vue'
+
 const cartStore = useCartStore()
 
 const cartList = computed(() => cartStore.cartList)
@@ -9,7 +10,7 @@ const cartList = computed(() => cartStore.cartList)
 <template>
   <div class="cart">
     <a class="curr" href="javascript:;">
-      <i class="iconfont icon-cart"></i><em>2</em>
+      <i class="iconfont icon-cart"></i><em>{{ cartList.length }}</em>
     </a>
     <div class="layer">
       <div class="list">
@@ -28,14 +29,14 @@ const cartList = computed(() => cartStore.cartList)
               <p class="count">x{{ i.count }}</p>
             </div>
           </RouterLink>
-          <i class="iconfont icon-close-new" @click="store.delCart(i.skuId)"></i>
+          <i class="iconfont icon-close-new" @click="cartStore.delCart(i.skuId)"></i>
         </div>
        
       </div>
       <div class="foot">
         <div class="total">
-          <p>共{{ cartList.length }}件商品</p>
-          <p>&yen; 100.00 </p>
+          <p>共{{ cartStore.allCount }}件商品</p>
+          <p>&yen; {{ cartStore.allPrice.toFixed(2) }} </p>
         </div>
         <el-button size="large" type="primary" >去购物车结算</el-button>
       </div>
