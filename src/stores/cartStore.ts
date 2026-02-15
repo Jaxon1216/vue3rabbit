@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia'
 import { ref, computed } from 'vue'
 import { useUserStore } from './user'
-import { insertCartAPI, findNewCarListAPI } from '@/apis/cart'
+import { insertCartAPI, findNewCarListAPI, delCartAPI } from '@/apis/cart'
 
 export const useCartStore = defineStore('cart', () => {
   const userStore = useUserStore()
@@ -32,12 +32,23 @@ export const useCartStore = defineStore('cart', () => {
       }
     }
   }
+
   // 3. 定义action - delCart
-  const delCart = (skuId) => {
-    //思路: 1.找到要删除项的下标值
-    //2. 使用数组的过滤方法
-    const idx = cartList.value.findIndex((item) => skuId === item.skuId)
-    cartList.value.splice(idx, 1)
+  // 删除购物车
+  const delCart = async (skuId) => {
+    if (isLogin.value) {
+      // 调用接口实现接口购物车中的删除功能
+      await delCartAPI([skuId])
+      // 重新获取最新的购物车列表
+      const res = await findNewCarListAPI()
+      cartList.value = res.result
+    } else {
+      // 思路：
+      // 1. 找到要删除项的下标值 - splice
+      // 2. 使用数组的过滤方法 - filter
+      const idx = cartList.value.findIndex((item) => skuId === item.skuId)
+      cartList.value.splice(idx, 1)
+    }
   }
 
   // 4. 定义action - singleCheck
@@ -58,6 +69,7 @@ export const useCartStore = defineStore('cart', () => {
   const selectedPrice = computed(() => cartList.value.filter((item) => item.selected).reduce((a, c) => a + c.count * c.price, 0))
   //是否全选
   const isAll = computed(() => cartList.value.every((item) => item.selected))
+
   return {
     cartList,
     addCart,
