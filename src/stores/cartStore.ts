@@ -5,6 +5,10 @@ import { insertCartAPI, findNewCarListAPI, delCartAPI } from '@/apis/cart'
 
 export const useCartStore = defineStore('cart', () => {
   const userStore = useUserStore()
+  const updateNewList = async () => {
+    const res = await findNewCarListAPI()
+    cartList.value = res.result
+  }
   // 判断是否登录
   const isLogin = computed(() => userStore.userInfo.token)
   // 1. 定义state - cartList
@@ -15,8 +19,7 @@ export const useCartStore = defineStore('cart', () => {
     if (isLogin.value) {
       // 登录之后的加入购车逻辑
       await insertCartAPI({ skuId: goods.skuId, count: goods.count })
-      const res = await findNewCarListAPI()
-      cartList.value = res.result
+      updateNewList()
     } else {
       // 添加购物车操作
       // 已添加过 - count + 1
@@ -40,14 +43,14 @@ export const useCartStore = defineStore('cart', () => {
       // 调用接口实现接口购物车中的删除功能
       await delCartAPI([skuId])
       // 重新获取最新的购物车列表
-      const res = await findNewCarListAPI()
-      cartList.value = res.result
+      await updateNewList()
     } else {
       // 思路：
       // 1. 找到要删除项的下标值 - splice
       // 2. 使用数组的过滤方法 - filter
       const idx = cartList.value.findIndex((item) => skuId === item.skuId)
       cartList.value.splice(idx, 1)
+      await updateNewList()
     }
   }
 
@@ -85,7 +88,8 @@ export const useCartStore = defineStore('cart', () => {
     selectedCount,
     selectedPrice,
     singleCheck,
-    allCheck
+    allCheck,
+    updateNewList
   }
 }, {
   persist: true,
