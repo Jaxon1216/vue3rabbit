@@ -51,6 +51,10 @@ export const useCartStore = defineStore('cart', () => {
     }
   }
 
+  //6. 清除购物车
+  const clearCart = () => {
+    cartList.value = []
+  }
   // 4. 定义action - singleCheck
   const singleCheck = (skuId, selected) => {
     const item = cartList.value.find((item) => item.skuId === skuId)
@@ -74,6 +78,7 @@ export const useCartStore = defineStore('cart', () => {
     cartList,
     addCart,
     delCart,
+    clearCart,
     isAll,
     allCount,
     allPrice,
