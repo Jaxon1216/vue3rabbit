@@ -35,3 +35,12 @@ export const mergeCartAPI = (data) => {
     data
   })
 }
+
+// 选中/取消选中购物车商品（全部）
+export const checkAllCartAPI = (selected, ids) => {
+  return request({
+    url: '/member/cart/selected',
+    method: 'PUT',
+    data: { selected, ids }
+  })
+}

@@ -12,13 +12,14 @@ const curAddress = ref({})  // 地址对象
 
 const getCheckInfo = async () => {
   const res = await getCheckInfoAPI()
+  console.log(res)
   checkInfo.value = res.result
   // 适配默认地址
   // 从地址列表中筛选出来 isDefault === 0 那一项
   const item = checkInfo.value.userAddresses.find(item => item.isDefault === 0)
-//   console.log(item)
+  // console.log(item)
   curAddress.value = item
-//   console.log(curAddress.value)
+  // console.log(curAddress.value)
 }
 
 onMounted(() => getCheckInfo())

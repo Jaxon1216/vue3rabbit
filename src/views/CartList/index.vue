@@ -1,7 +1,12 @@
 <script setup>
 import { useCartStore } from '@/stores/cartStore'
-const cartStore = useCartStore()
+import { useUserStore } from '@/stores/user'
+import { checkAllCartAPI } from '@/apis/cart'
+import { useRouter } from 'vue-router'
 
+const cartStore = useCartStore()
+const userStore = useUserStore()
+const router = useRouter()
 
 //单选回调
 const singleCheck = (i, selected) => {
@@ -11,6 +16,22 @@ const singleCheck = (i, selected) => {
 //全选回调
 const allCheck = (selected) => {
   cartStore.allCheck(selected)
+}
+
+// 下单结算
+const goCheckout = async () => {
+  if (userStore.userInfo.token) {
+    // 登录状态：先把前端的选中状态同步到后端，再跳转
+    const selectedIds = cartStore.cartList
+      .filter(item => item.selected)
+      .map(item => item.skuId)
+    if (selectedIds.length === 0) return
+    // 先全部取消选中，再选中勾选的商品
+    const allIds = cartStore.cartList.map(item => item.skuId)
+    await checkAllCartAPI(false, allIds)
+    await checkAllCartAPI(true, selectedIds)
+  }
+  router.push('/checkout')
 }
 </script>
 
@@ -86,7 +107,7 @@ const allCheck = (selected) => {
           <span class="red">¥ {{ cartStore.selectedPrice.toFixed(2) }} </span>
         </div>
         <div class="total">
-          <el-button size="large" type="primary" @click="$router.push('/checkout')">下单结算</el-button>
+          <el-button size="large" type="primary" @click="goCheckout">下单结算</el-button>
         </div>
       </div>
     </div>
