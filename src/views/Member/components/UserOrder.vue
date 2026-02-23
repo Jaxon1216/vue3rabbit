@@ -15,9 +15,9 @@ const tabTypes = [
 // 订单列表
 const orderList = ref([])
 const params = ref({
-  orderState: 0,
-  page: 1,
-  pageSize: 2
+  orderState: 0, // 订单状态：0=全部, 1=待付款, 2=待发货... (用于筛选)
+  page: 1,       // 当前页码：告诉后端"我要第几页的数据"
+  pageSize: 2    // 每页条数：告诉后端"每一页给我几条数据"
 })
 const total = ref(0)
 //
@@ -33,6 +33,26 @@ const tabChange = (type) => {
   getOrderList()
   console.log(type)
 }
+
+// 页数切换
+const pageChange = (page) => {
+  params.value.page = page
+  getOrderList()
+  console.log(page)
+}
+
+  // 创建格式化函数
+  const fomartPayState = (payState) => {
+    const stateMap = {
+      1: '待付款',
+      2: '待发货',
+      3: '待收货',
+      4: '待评价',
+      5: '已完成',
+      6: '已取消'
+    }
+    return stateMap[payState]
+  }
 </script>
 
 <template>
@@ -78,7 +98,7 @@ const tabChange = (type) => {
                 </ul>
               </div>
               <div class="column state">
-                <p>{{ order.orderState }}</p>
+                <p>{{ fomartPayState(order.orderState)}}</p>
                 <p v-if="order.orderState === 3">
                   <a href="javascript:;" class="green">查看物流</a>
                 </p>
