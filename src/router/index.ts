@@ -12,6 +12,7 @@ import PayBack from '@/views/Pay/PayBack.vue'
 import Member from '@/views/Member/index.vue'
 import MemberInfo from '@/views/Member/components/UserInfo.vue'
 import MemberOrder from '@/views/Member/components/UserOrder.vue'
+import Sku from '@/views/Sku/index.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -72,6 +73,10 @@ const router = createRouter({
     {
       path: '/login',
       component: Login
+    },
+    {
+      path: '/sku',
+      component: Sku
     }
   ],
   // 路由滚动行为定制
