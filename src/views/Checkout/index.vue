@@ -52,8 +52,8 @@ const createOrder = async () => {
   const orderId = res.result.id
   router.push({
     path: '/pay',
-    query: { 
-      id: orderId 
+    query: {
+      id: orderId
     }
   })
   //更新购物车
@@ -84,7 +84,19 @@ const createOrder = async () => {
           </div>
         </div>
         <!-- 商品信息 -->
+
         <h3 class="box-title">商品信息</h3>
+
+
+        <el-tooltip
+        class="box-item"
+        effect="dark"
+        content="Top Center prompts info"
+        placement="top"
+      >
+        <el-button>黑马公共测试服务器 pcapi-xiaotuxian-front-devtest.itheima.net 的已知问题 —
+            这个接口年久失修，选中状态的写入可能已经失效了，所以有时服务器传回来的值都是0</el-button>
+      </el-tooltip>
         <div class="box-body">
           <table class="goods">
             <thead>
@@ -153,7 +165,7 @@ const createOrder = async () => {
         </div>
         <!-- 提交订单 -->
         <div class="submit">
-          <el-button type="primary" size="large" @click="createOrder" >提交订单</el-button>
+          <el-button type="primary" size="large" @click="createOrder">提交订单</el-button>
         </div>
       </div>
     </div>
@@ -161,20 +173,21 @@ const createOrder = async () => {
   <!-- 切换地址 -->
   <el-dialog v-model="showDialog" title="切换收货地址" width="30%" center>
     <div class="addressWrapper">
-        <div class="text item" :class="{ active: activeAddress.id === item.id }" @click="switchAddress(item)" v-for="item in checkInfo.userAddresses"  :key="item.id">
-            <!-- flag,这个激活这一行是本集重点 -->
+      <div class="text item" :class="{ active: activeAddress.id === item.id }" @click="switchAddress(item)"
+        v-for="item in checkInfo.userAddresses" :key="item.id">
+        <!-- flag,这个激活这一行是本集重点 -->
         <ul>
-        <li><span>收<i />货<i />人：</span>{{ item.receiver }} </li>
-        <li><span>联系方式：</span>{{ item.contact }}</li>
-        <li><span>收货地址：</span>{{ item.fullLocation + item.address }}</li>
+          <li><span>收<i />货<i />人：</span>{{ item.receiver }} </li>
+          <li><span>联系方式：</span>{{ item.contact }}</li>
+          <li><span>收货地址：</span>{{ item.fullLocation + item.address }}</li>
         </ul>
-        </div>
+      </div>
     </div>
     <template #footer>
-        <span class="dialog-footer">
+      <span class="dialog-footer">
         <el-button>取消</el-button>
         <el-button type="primary" @click="confirm">确定</el-button>
-        </span>
+      </span>
     </template>
   </el-dialog>
   <!-- 添加地址 -->

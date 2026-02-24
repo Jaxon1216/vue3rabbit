@@ -84,10 +84,10 @@ const doLogin = () => {
               status-icon>
               <el-form-item  prop="account" label="账户">
                 <!-- 第三步：制定表单的校验字段名 prop -->
-                <el-input v-model="form.account"/>
+                <el-input v-model="form.account" placeholder="账号xiaotuxian001" />
               </el-form-item>
               <el-form-item prop="password" label="密码">
-                <el-input v-model="form.password" />
+                <el-input v-model="form.password" placeholder="密码123456" />
               </el-form-item>
               <el-form-item prop="agree" label-width="22px">
                 <el-checkbox v-model="form.agree" size="large">

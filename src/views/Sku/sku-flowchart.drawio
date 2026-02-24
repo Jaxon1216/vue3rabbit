@@ -1,0 +1,284 @@
+<mxGraphModel>
+  <root>
+    <mxCell id="0"/>
+    <mxCell id="1" parent="0"/>
+
+    <mxCell id="title" value="SKU 规格组件 完整流程图" style="text;fontSize=22;fontStyle=1;align=center;verticalAlign=middle;fillColor=none;strokeColor=none;fontColor=#1a1a2e;" vertex="1" parent="1">
+      <mxGeometry x="200" y="10" width="600" height="40" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="p1" value="Phase 1: 初始化阶段" style="text;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;fillColor=none;strokeColor=none;fontColor=#0288d1;" vertex="1" parent="1">
+      <mxGeometry x="40" y="60" width="250" height="30" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="2" value="onMounted&#xa;页面挂载" style="ellipse;fillColor=#e1f5fe;strokeColor=#0288d1;fontSize=13;fontColor=#01579b;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="80" y="100" width="140" height="60" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="3" value="getGoods()&#xa;axios.get() 请求商品数据&#xa;goods.value = res.data.result" style="rounded=1;fillColor=#e1f5fe;strokeColor=#0288d1;fontSize=12;fontColor=#01579b;whiteSpace=wrap;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="40" y="195" width="230" height="70" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="e1" style="endArrow=classic;strokeColor=#0288d1;strokeWidth=2;" edge="1" source="2" target="3" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="p2" value="Phase 2: 路径字典 (核心算法)" style="text;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;fillColor=none;strokeColor=none;fontColor=#e65100;" vertex="1" parent="1">
+      <mxGeometry x="330" y="60" width="320" height="30" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="pmbox" value="" style="rounded=1;fillColor=#fff3e0;strokeColor=#f57c00;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+      <mxGeometry x="310" y="95" width="370" height="420" as="geometry"/>
+    </mxCell>
+    <mxCell id="pmtitle" value="getPathMap()  生成路径字典" style="text;fontSize=14;align=center;verticalAlign=middle;fillColor=#f57c00;strokeColor=none;fontColor=#ffffff;rounded=1;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="360" y="105" width="270" height="30" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="4" value="Step 1: 过滤有效SKU&#xa;skus.filter(sku => sku.inventory > 0)&#xa;剔除库存为0的SKU组合" style="rounded=1;fillColor=#fff3e0;strokeColor=#ef6c00;fontSize=12;fontColor=#e65100;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="340" y="148" width="310" height="60" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="5" value="Step 2: 提取规格值数组&#xa;sku.specs.map(s => s.valueName)&#xa;例: ['蓝色', '20cm', '中国']" style="rounded=1;fillColor=#fff3e0;strokeColor=#ef6c00;fontSize=12;fontColor=#e65100;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="340" y="225" width="310" height="60" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="6" value="Step 3: 幂集算法 bwPowerSet()&#xa;['蓝色','20cm','中国'] =>&#xa;[['蓝色'],['20cm'],['中国'],&#xa;['蓝色','20cm'],['蓝色','中国'],&#xa;['20cm','中国'],['蓝色','20cm','中国']]" style="rounded=1;fillColor=#fff3e0;strokeColor=#ef6c00;fontSize=11;fontColor=#e65100;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="340" y="302" width="310" height="90" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="7" value="Step 4: 子集 join('-') 作为 key&#xa;pathMap = {&#xa;  '蓝色': [id1, id2],&#xa;  '蓝色-20cm': [id1],&#xa;  '蓝色-20cm-中国': [id1], ...&#xa;}" style="rounded=1;fillColor=#ff9800;strokeColor=#e65100;fontSize=12;fontColor=#ffffff;whiteSpace=wrap;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="340" y="410" width="310" height="95" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="e2" style="endArrow=classic;strokeColor=#0288d1;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="3" target="4" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e3" style="endArrow=classic;strokeColor=#ef6c00;strokeWidth=2;" edge="1" source="4" target="5" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e4" style="endArrow=classic;strokeColor=#ef6c00;strokeWidth=2;" edge="1" source="5" target="6" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e5" style="endArrow=classic;strokeColor=#ef6c00;strokeWidth=2;" edge="1" source="6" target="7" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="p3" value="Phase 3: 初始化禁用" style="text;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;fillColor=none;strokeColor=none;fontColor=#c62828;" vertex="1" parent="1">
+      <mxGeometry x="40" y="360" width="230" height="30" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="8" value="initDisabledStatus(specs, pathMap)&#xa;遍历所有规格值 val&#xa;pathMap[val.name] 是否存在?" style="rounded=1;fillColor=#ffebee;strokeColor=#c62828;fontSize=12;fontColor=#b71c1c;whiteSpace=wrap;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="40" y="400" width="245" height="65" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="8a" value="存在&#xa;disabled = false&#xa;可点击" style="rounded=1;fillColor=#e8f5e9;strokeColor=#2e7d32;fontSize=11;fontColor=#2e7d32;whiteSpace=wrap;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="40" y="490" width="110" height="55" as="geometry"/>
+    </mxCell>
+    <mxCell id="8b" value="不存在&#xa;disabled = true&#xa;禁用" style="rounded=1;fillColor=#ffebee;strokeColor=#c62828;fontSize=11;fontColor=#c62828;whiteSpace=wrap;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="175" y="490" width="110" height="55" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="e6" style="endArrow=classic;strokeColor=#2e7d32;strokeWidth=1;exitX=0.3;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="8" target="8a" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="e7" style="endArrow=classic;strokeColor=#c62828;strokeWidth=1;exitX=0.7;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="8" target="8b" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="epm" style="endArrow=classic;strokeColor=#c62828;strokeWidth=2;dashed=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="7" target="8" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="epm-lbl" value="pathMap 就绪" style="text;fontSize=11;fontColor=#888;align=center;" vertex="1" parent="1">
+      <mxGeometry x="280" y="420" width="70" height="20" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="p4" value="Phase 4: 用户点击交互" style="text;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;fillColor=none;strokeColor=none;fontColor=#2e7d32;" vertex="1" parent="1">
+      <mxGeometry x="40" y="570" width="270" height="30" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="wait" value="等待用户&#xa;点击规格按钮" style="ellipse;fillColor=#fffde7;strokeColor=#f9a825;fontSize=13;fontColor=#f57f17;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="80" y="610" width="155" height="60" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="ewait" style="endArrow=classic;strokeColor=#f9a825;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="8a" target="wait" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="cbox" value="" style="rounded=1;fillColor=#e8f5e9;strokeColor=#2e7d32;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+      <mxGeometry x="310" y="570" width="370" height="210" as="geometry"/>
+    </mxCell>
+    <mxCell id="ctitle" value="changeSelectedStatus(item, val)" style="text;fontSize=14;align=center;verticalAlign=middle;fillColor=#2e7d32;strokeColor=none;fontColor=#ffffff;rounded=1;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="360" y="580" width="270" height="28" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="9" value="val.selected ?&#xa;当前按钮已选中?" style="rhombus;fillColor=#e8f5e9;strokeColor=#2e7d32;fontSize=12;fontColor=#1b5e20;whiteSpace=wrap;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="340" y="625" width="150" height="70" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="9a" value="是 => 取消选中&#xa;val.selected = false" style="rounded=1;fillColor=#ffebee;strokeColor=#c62828;fontSize=11;fontColor=#c62828;whiteSpace=wrap;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="330" y="720" width="150" height="45" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="9b" value="否 => 选中当前项&#xa;同行其他取消&#xa;当前项 selected=true" style="rounded=1;fillColor=#e8f5e9;strokeColor=#2e7d32;fontSize=11;fontColor=#2e7d32;whiteSpace=wrap;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="530" y="620" width="140" height="60" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="ec1" style="endArrow=classic;strokeColor=#2e7d32;strokeWidth=2;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="wait" target="9" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="ec2" style="endArrow=classic;strokeColor=#c62828;strokeWidth=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="9" target="9a" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="ec3" style="endArrow=classic;strokeColor=#2e7d32;strokeWidth=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="9" target="9b" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="p5" value="Phase 5: 动态更新禁用状态" style="text;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;fillColor=none;strokeColor=none;fontColor=#7b1fa2;" vertex="1" parent="1">
+      <mxGeometry x="40" y="810" width="310" height="30" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="ubox" value="" style="rounded=1;fillColor=#f3e5f5;strokeColor=#7b1fa2;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+      <mxGeometry x="40" y="850" width="640" height="270" as="geometry"/>
+    </mxCell>
+    <mxCell id="utitle" value="updateDisabledStatus(specs, pathMap)" style="text;fontSize=14;align=center;verticalAlign=middle;fillColor=#7b1fa2;strokeColor=none;fontColor=#ffffff;rounded=1;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="160" y="860" width="370" height="28" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="10" value="getSelectedArr(specs)&#xa;生成当前选中状态数组&#xa;例: ['蓝色', undefined, undefined]" style="rounded=1;fillColor=#f3e5f5;strokeColor=#7b1fa2;fontSize=12;fontColor=#4a148c;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="60" y="900" width="260" height="60" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="11" value="遍历每行每个按钮 val&#xa;若 val 已选中 => 跳过&#xa;若 val 未选中 => 继续检查" style="rounded=1;fillColor=#f3e5f5;strokeColor=#7b1fa2;fontSize=12;fontColor=#4a148c;whiteSpace=wrap;" vertex="1" parent="1">
+      <mxGeometry x="390" y="900" width="260" height="60" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="12" value="'模拟选中' 策略 (核心!)&#xa;复制 selectedArr&#xa;将当前位置 i 替换为 val.name&#xa;例: ['蓝色', '20cm', undefined]" style="rounded=1;fillColor=#e1bee7;strokeColor=#7b1fa2;fontSize=12;fontColor=#4a148c;whiteSpace=wrap;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="60" y="980" width="260" height="70" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="13" value="过滤 undefined 后 join('-')&#xa;得到 key = '蓝色-20cm'&#xa;查 pathMap[key]&#xa;存在则可选, 否则禁用" style="rounded=1;fillColor=#e1bee7;strokeColor=#7b1fa2;fontSize=12;fontColor=#4a148c;whiteSpace=wrap;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="390" y="980" width="260" height="70" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="13a" value="pathMap有值&#xa;disabled=false" style="rounded=1;fillColor=#e8f5e9;strokeColor=#2e7d32;fontSize=11;fontColor=#2e7d32;whiteSpace=wrap;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="380" y="1070" width="120" height="35" as="geometry"/>
+    </mxCell>
+    <mxCell id="13b" value="pathMap无值&#xa;disabled=true" style="rounded=1;fillColor=#ffebee;strokeColor=#c62828;fontSize=11;fontColor=#c62828;whiteSpace=wrap;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="540" y="1070" width="120" height="35" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="eu1" style="endArrow=classic;strokeColor=#7b1fa2;strokeWidth=2;" edge="1" source="10" target="11" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="eu2" style="endArrow=classic;strokeColor=#7b1fa2;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="11" target="12" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points"><mxPoint x="520" y="968"/><mxPoint x="190" y="968"/></Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="eu3" style="endArrow=classic;strokeColor=#7b1fa2;strokeWidth=2;" edge="1" source="12" target="13" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="eu4" style="endArrow=classic;strokeColor=#2e7d32;strokeWidth=1;" edge="1" source="13" target="13a" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="eu5" style="endArrow=classic;strokeColor=#c62828;strokeWidth=1;" edge="1" source="13" target="13b" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="ecu1" style="endArrow=classic;strokeColor=#7b1fa2;strokeWidth=2;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="9a" target="10" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points"><mxPoint x="405" y="800"/><mxPoint x="190" y="800"/></Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="ecu2" style="endArrow=classic;strokeColor=#7b1fa2;strokeWidth=2;dashed=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" source="9b" target="10" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points"><mxPoint x="600" y="800"/><mxPoint x="190" y="800"/></Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="ecu-lbl" value="选中状态变更后" style="text;fontSize=11;fontColor=#7b1fa2;align=center;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="240" y="783" width="110" height="20" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="p6" value="Phase 6: 产出SKU数据" style="text;fontSize=16;fontStyle=1;align=left;verticalAlign=middle;fillColor=none;strokeColor=none;fontColor=#00695c;" vertex="1" parent="1">
+      <mxGeometry x="40" y="1130" width="270" height="30" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="obox" value="" style="rounded=1;fillColor=#e0f2f1;strokeColor=#00695c;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+      <mxGeometry x="40" y="1170" width="640" height="210" as="geometry"/>
+    </mxCell>
+    <mxCell id="otitle" value="产出SKU对象数据" style="text;fontSize=14;align=center;verticalAlign=middle;fillColor=#00695c;strokeColor=none;fontColor=#ffffff;rounded=1;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="250" y="1180" width="200" height="28" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="14" value="getSelectedArr(specs)&#xa;检查数组中是否有 undefined" style="rounded=1;fillColor=#e0f2f1;strokeColor=#00695c;fontSize=12;fontColor=#004d40;whiteSpace=wrap;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="60" y="1220" width="230" height="50" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="15" value="有 undefined ?" style="rhombus;fillColor=#e0f2f1;strokeColor=#00695c;fontSize=13;fontColor=#004d40;whiteSpace=wrap;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="345" y="1215" width="140" height="65" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="15a" value="有 => 规格未选完整&#xa;不产出数据" style="rounded=1;fillColor=#ffebee;strokeColor=#c62828;fontSize=11;fontColor=#c62828;whiteSpace=wrap;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="540" y="1218" width="125" height="50" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="15b" value="没有 => 规格选择完整&#xa;1. selectedArr.join('-') 得到 key&#xa;2. pathMap[key] 获取 skuId&#xa;3. skus.find(s => s.id === skuId)&#xa;4. 产出完整SKU对象 (id,价格,库存等)" style="rounded=1;fillColor=#e8f5e9;strokeColor=#2e7d32;fontSize=11;fontColor=#2e7d32;whiteSpace=wrap;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="310" y="1295" width="250" height="75" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="eo1" style="endArrow=classic;strokeColor=#00695c;strokeWidth=2;" edge="1" source="14" target="15" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="eo2" style="endArrow=classic;strokeColor=#c62828;strokeWidth=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" source="15" target="15a" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+    <mxCell id="eo3" style="endArrow=classic;strokeColor=#2e7d32;strokeWidth=2;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" source="15" target="15b" parent="1">
+      <mxGeometry relative="1" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="eback" style="endArrow=classic;strokeColor=#f9a825;strokeWidth=2;dashed=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" target="wait" parent="1">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="60" y="1375" as="sourcePoint"/>
+        <Array as="points"><mxPoint x="20" y="1375"/><mxPoint x="20" y="640"/></Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="eback-lbl" value="继续等待下次点击" style="text;fontSize=11;fontColor=#f9a825;align=center;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="0" y="1000" width="40" height="40" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="ibox" value="" style="rounded=1;fillColor=#fafafa;strokeColor=#616161;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+      <mxGeometry x="720" y="95" width="310" height="460" as="geometry"/>
+    </mxCell>
+    <mxCell id="ititle" value="面试重点解析" style="text;fontSize=15;align=center;verticalAlign=middle;fillColor=#424242;strokeColor=none;fontColor=#ffffff;rounded=1;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="770" y="108" width="210" height="28" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="i1" value="Q1: 为什么用幂集算法?&#xa;&#xa;A: 规格组合是多维度选择问题,&#xa;需要预计算所有可能的子集组合&#xa;才能实时判断任意选择下&#xa;哪些规格仍然可用&#xa;时间复杂度: O(n * 2^m)&#xa;n=SKU数量, m=规格维度数" style="rounded=1;fillColor=#fafafa;strokeColor=#bdbdbd;fontSize=11;fontColor=#333;whiteSpace=wrap;align=left;spacingLeft=8;spacingTop=4;" vertex="1" parent="1">
+      <mxGeometry x="735" y="150" width="280" height="120" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="i2" value="Q2: 路径字典的作用?&#xa;&#xa;A: 用空间换时间的思想&#xa;预先构建 pathMap 后,&#xa;每次点击只需 O(1) 查表&#xa;而非遍历所有SKU组合" style="rounded=1;fillColor=#fafafa;strokeColor=#bdbdbd;fontSize=11;fontColor=#333;whiteSpace=wrap;align=left;spacingLeft=8;spacingTop=4;" vertex="1" parent="1">
+      <mxGeometry x="735" y="285" width="280" height="100" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="i3" value="Q3: 禁用逻辑的核心?&#xa;&#xa;A: '模拟选中'策略——不真正选中,&#xa;而是将按钮name假设放入已选数组,&#xa;拼成key去pathMap查找。&#xa;找到=可选, 找不到=禁用&#xa;保证用户永远不会选到无库存组合" style="rounded=1;fillColor=#fafafa;strokeColor=#bdbdbd;fontSize=11;fontColor=#333;whiteSpace=wrap;align=left;spacingLeft=8;spacingTop=4;" vertex="1" parent="1">
+      <mxGeometry x="735" y="400" width="280" height="120" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="dsbox" value="" style="rounded=1;fillColor=#e3f2fd;strokeColor=#1565c0;strokeWidth=2;dashed=1;" vertex="1" parent="1">
+      <mxGeometry x="720" y="580" width="310" height="260" as="geometry"/>
+    </mxCell>
+    <mxCell id="dstitle" value="关键数据结构示意" style="text;fontSize=14;align=center;verticalAlign=middle;fillColor=#1565c0;strokeColor=none;fontColor=#ffffff;rounded=1;fontStyle=1;" vertex="1" parent="1">
+      <mxGeometry x="770" y="590" width="210" height="28" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="ds1" value="goods.specs (规格数据):&#xa;[&#xa;  {name:'颜色', values:[{name:'蓝色',...}]},&#xa;  {name:'尺寸', values:[{name:'20cm',...}]},&#xa;  {name:'产地', values:[{name:'中国',...}]}&#xa;]" style="rounded=1;fillColor=#e3f2fd;strokeColor=#1565c0;fontSize=11;fontColor=#0d47a1;whiteSpace=wrap;align=left;spacingLeft=8;spacingTop=4;" vertex="1" parent="1">
+      <mxGeometry x="735" y="630" width="280" height="95" as="geometry"/>
+    </mxCell>
+
+    <mxCell id="ds2" value="pathMap (路径字典):&#xa;{&#xa;  '蓝色': [id1, id2],&#xa;  '蓝色-20cm': [id1],&#xa;  '蓝色-20cm-中国': [id1],&#xa;  '黑色': [id3], ...&#xa;}" style="rounded=1;fillColor=#e3f2fd;strokeColor=#1565c0;fontSize=11;fontColor=#0d47a1;whiteSpace=wrap;align=left;spacingLeft=8;spacingTop=4;" vertex="1" parent="1">
+      <mxGeometry x="735" y="740" width="280" height="90" as="geometry"/>
+    </mxCell>
+
+  </root>
+</mxGraphModel>

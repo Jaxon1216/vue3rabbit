@@ -34,7 +34,22 @@ const changeSelectedStatus = (item, val) => {
   // const selectedArr = getSelectedArr(goods.value.specs)
   updateDisabledStatus(goods.value.specs, pathMap)
   // console.log(selectedArr)
+  // 产出SKU对象数据
+  const index = getSelectedArr(goods.value.specs).findIndex(item => item === undefined)
+  if (index > -1) {
+    console.log('找到了，信息不完整')
+  } else {
+    console.log('没有找到，信息完整，可以产出')
+    // 获取sku对象
+    const key = getSelectedArr(goods.value.specs).join('-')
+    const skuIds = pathMap[key]
+    console.log(skuIds)
+    // 以skuId作为匹配项去goods.value.skus数组中找
+    const skuObj = goods.value.skus.find(item => item.id === skuIds[0])
+    console.log('sku对象为', skuObj)
+  }
 }
+
 
 //生成有效路径字典对象
 const getPathMap = () => {
@@ -85,7 +100,7 @@ const getSelectedArr = (specs) => {
 }
 //切换时更新禁用状态
 const updateDisabledStatus = (specs, pathMap) => {
-  specs.forEach((item,index) => {
+  specs.forEach((item, index) => {
     item.values.forEach(val => {
       const selectedArr = getSelectedArr(specs)
       selectedArr[index] = val.name
@@ -108,9 +123,11 @@ const updateDisabledStatus = (specs, pathMap) => {
             <dd>
               <template v-for="val in item.values" :key="val.name">
                 <!-- 图片类型规格 -->
-                <img :class="{ selected: val.selected, disabled: val.disabled }" @click="changeSelectedStatus(item, val)" v-if="val.picture" :src="val.picture" :title="val.name">
+                <img :class="{ selected: val.selected, disabled: val.disabled }"
+                  @click="changeSelectedStatus(item, val)" v-if="val.picture" :src="val.picture" :title="val.name">
                 <!-- 文字类型规格 -->
-                <span :class="{ selected: val.selected, disabled: val.disabled }" v-else @click="changeSelectedStatus(item, val)">{{ val.name }}</span>
+                <span :class="{ selected: val.selected, disabled: val.disabled }" v-else
+                  @click="changeSelectedStatus(item, val)">{{ val.name }}</span>
               </template>
             </dd>
           </dl>
@@ -143,6 +160,7 @@ const updateDisabledStatus = (specs, pathMap) => {
     }
   }
 }
+
 @mixin sku-state-mixin {
   border: 1px solid #e4e4e4;
   margin-right: 10px;
@@ -196,4 +214,3 @@ const updateDisabledStatus = (specs, pathMap) => {
   }
 }
 </style>
-

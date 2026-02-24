@@ -20,16 +20,20 @@ const allCheck = (selected) => {
 
 // 下单结算
 const goCheckout = async () => {
+  console.log('cartStore', cartStore)
   if (userStore.userInfo.token) {
     // 登录状态：先把前端的选中状态同步到后端，再跳转
     const selectedIds = cartStore.cartList
       .filter(item => item.selected)
       .map(item => item.skuId)
+    console.log('选中的商品：', selectedIds)
     if (selectedIds.length === 0) return
     // 先全部取消选中，再选中勾选的商品
     const allIds = cartStore.cartList.map(item => item.skuId)
-    await checkAllCartAPI(false, allIds)
-    await checkAllCartAPI(true, selectedIds)
+    const res1 = await checkAllCartAPI(false, allIds)
+    console.log('取消全选结果：', res1)
+    const res2 = await checkAllCartAPI(true, selectedIds)
+    console.log('选中结果：', res2)
   }
   router.push('/checkout')
 }
@@ -42,7 +46,7 @@ const goCheckout = async () => {
         <table>
           <thead>
             <tr>
-              <th width="120" >
+              <th width="120">
                 <el-checkbox :model-value="cartStore.isAll" @change="(selected) => allCheck(selected)" />
               </th>
               <th width="400">商品信息</th>
